@@ -1,0 +1,69 @@
+import ContactsUI
+import Foundation
+
+public class PhoneContact: Identifiable, Hashable {
+    internal init(id: String,
+                  givenName: String? = nil,
+                  familyName: String? = nil,
+                  middleName: String? = nil,
+                  nameSuffix: String? = nil,
+                  avatarData: Data? = nil,
+                  phoneNumber: [String] = [String](),
+                  email: [String] = [String]()) {
+        self.id = id
+        self.givenName = givenName
+        self.familyName = familyName
+        self.avatarData = avatarData
+        self.phoneNumber = phoneNumber
+        self.email = email
+    }
+
+    public static func == (lhs: PhoneContact, rhs: PhoneContact) -> Bool {
+        lhs.id == rhs.id
+    }
+
+    public var id: String
+    public var givenName: String?
+    public var familyName: String?
+    public var middleName: String?
+    public var nameSuffix: String?
+
+    public var name: String? {
+        [givenName, middleName, familyName, nameSuffix].compactMap({ $0 }).joined(separator: " ")
+    }
+
+    public var avatarData: Data?
+    public var phoneNumber: [String] = [String]()
+    public var email: [String] = [String]()
+
+    init() {
+        id = ""
+        givenName = nil
+        familyName = nil
+        middleName = nil
+        avatarData = nil
+        phoneNumber = []
+        email = []
+        // isSelected = false
+        // isInvited = false
+    }
+
+    init(contact: CNContact) {
+        id = contact.identifier
+        givenName = contact.givenName
+        familyName = contact.familyName
+        middleName = contact.middleName
+        nameSuffix = contact.nameSuffix
+        avatarData = contact.thumbnailImageData
+        for phone in contact.phoneNumbers {
+            phoneNumber.append(phone.value.stringValue)
+        }
+        for mail in contact.emailAddresses {
+            email.append(mail.value as String)
+        }
+    }
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+}
