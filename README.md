@@ -3,7 +3,7 @@ Native SwiftUI CNContactViewController replacement
 
 ![License](https://img.shields.io/cocoapods/l/Purchases.svg?style=flat)
 ![SwiftPM compatible](https://img.shields.io/badge/SwiftPM-compatible-orange.svg)
-![Twitter](https://img.shields.io/twitter/follow/pykaso?label=Follow&style=social)
+![Twitter](https://img.shields.io/twitter/follow/pykasonet?label=Follow&style=social)
 
 ![CNContactViewController VS. SwiftUI_ContactPicker](https://github.com/pykaso/SwiftUI_ContactPicker/blob/main/github/swiftui_contact_picker.png?raw=true)
 
