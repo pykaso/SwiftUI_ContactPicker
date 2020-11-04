@@ -1,2 +1,2 @@
 # SwiftUI_ContactPicker
-Native SwiftUI contact picker
+Native SwiftUI CNContactViewController replacement
