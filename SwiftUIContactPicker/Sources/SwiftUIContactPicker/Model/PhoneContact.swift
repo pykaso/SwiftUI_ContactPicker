@@ -27,14 +27,15 @@ public class PhoneContact: Identifiable, Hashable {
     public var familyName: String?
     public var middleName: String?
     public var nameSuffix: String?
-
+    public var avatarData: Data?
+    public var phoneNumber: [String] = [String]()
+    public var email: [String] = [String]()
+    public var cnContact: CNContact?
+    
     public var name: String? {
         [givenName, middleName, familyName, nameSuffix].compactMap({ $0 }).joined(separator: " ")
     }
 
-    public var avatarData: Data?
-    public var phoneNumber: [String] = [String]()
-    public var email: [String] = [String]()
 
     init() {
         id = ""
@@ -44,8 +45,6 @@ public class PhoneContact: Identifiable, Hashable {
         avatarData = nil
         phoneNumber = []
         email = []
-        // isSelected = false
-        // isInvited = false
     }
 
     init(contact: CNContact) {
@@ -55,6 +54,7 @@ public class PhoneContact: Identifiable, Hashable {
         middleName = contact.middleName
         nameSuffix = contact.nameSuffix
         avatarData = contact.thumbnailImageData
+        cnContact = contact
         for phone in contact.phoneNumbers {
             phoneNumber.append(phone.value.stringValue)
         }
