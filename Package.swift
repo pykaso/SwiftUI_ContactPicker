@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "SwiftUIContactPicker",
     platforms: [
-        .iOS(.v13)
+        .iOS(.v14)
     ],
     products: [
         .library(
@@ -19,12 +19,13 @@ let package = Package(
             name: "SwiftUIContactPicker",
             dependencies: [],
             path: "SwiftUIContactPicker",
+            exclude: ["Tests"],
             resources: [.process("Resources")]
         ),
-        .testTarget(
-            name: "SwiftUIContactPickerTests",
-            dependencies: ["SwiftUIContactPicker"],
-            path: "SwiftUIContactPicker"
-            ),
+        // .testTarget(
+        //     name: "SwiftUIContactPickerTests",
+        //     dependencies: ["SwiftUIContactPicker"],
+        //     path: "SwiftUIContactPicker"
+        //     ),
     ]
 )
