@@ -17,13 +17,14 @@ let package = Package(
     targets: [
         .target(
             name: "SwiftUIContactPicker",
-            path: "SwiftUIContactPicker",
             dependencies: [],
+            path: "SwiftUIContactPicker",
             resources: [.process("Resources")]
         ),
         .testTarget(
             name: "SwiftUIContactPickerTests",
-            path: "SwiftUIContactPicker",
-            dependencies: ["SwiftUIContactPicker"]),
+            dependencies: ["SwiftUIContactPicker"],
+            path: "SwiftUIContactPicker"
+            ),
     ]
 )
