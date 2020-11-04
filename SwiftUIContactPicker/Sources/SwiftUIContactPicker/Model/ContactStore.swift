@@ -30,9 +30,12 @@ public class ContactStore: ObservableObject, ContactStoreProvider {
         let contactStore = CNContactStore()
         let keysToFetch = [
             CNContactFormatter.descriptorForRequiredKeys(for: .fullName),
+            CNContactIdentifierKey,
             CNContactPhoneNumbersKey,
             CNContactEmailAddressesKey,
-            CNContactThumbnailImageDataKey] as [Any]
+            CNContactThumbnailImageDataKey,
+            CNContactViewController.descriptorForRequiredKeys(),
+        ] as [Any]
 
         var allContainers: [CNContainer] = []
         do {
