@@ -3,6 +3,7 @@ Native SwiftUI CNContactViewController replacement
 
 ![License](https://img.shields.io/cocoapods/l/Purchases.svg?style=flat)
 ![SwiftPM compatible](https://img.shields.io/badge/SwiftPM-compatible-orange.svg)
+![Twitter](https://img.shields.io/twitter/follow/pykaso?label=Follow&style=social)
 
 ![CNContactViewController VS. SwiftUI_ContactPicker](https://github.com/pykaso/SwiftUI_ContactPicker/blob/main/github/swiftui_contact_picker.png?raw=true)
 
@@ -35,3 +36,7 @@ var body: some View {
         }
 }
 ```
+
+## TODO
+- The "Groups" button not implemented. It's possible that will be removed/hidden because I don't need it for now.
+- Missing "index bar" (letters on the right side)
