@@ -5,6 +5,6 @@
       location = "group:SwiftUIContactPicker">
    </FileRef>
    <FileRef
-      location = "container:/Users/pykaso/sources/SwiftUIComponents/SwiftUIComponents/SwiftUIContactPickerExample.xcodeproj">
+      location = "container:SwiftUIContactPickerExample/SwiftUIContactPickerExample.xcodeproj">
    </FileRef>
 </Workspace>
