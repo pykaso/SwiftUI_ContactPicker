@@ -10,7 +10,7 @@ public struct ContactPickerHeader: View {
         VStack(spacing: 0) {
             if !showCancelButton {
                 HStack {
-                    Button("Groups", action: {})
+                    Button("Groups", action: {}).hidden()
                     Spacer()
                     Text("Contacts")
                         .bold()

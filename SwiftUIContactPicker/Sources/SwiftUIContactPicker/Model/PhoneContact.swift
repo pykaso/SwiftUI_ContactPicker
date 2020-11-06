@@ -33,7 +33,7 @@ public class PhoneContact: Identifiable, Hashable {
     public var cnContact: CNContact?
     
     public var name: String? {
-        [givenName, middleName, familyName, nameSuffix].compactMap({ $0 }).joined(separator: " ")
+        cnContact?.fullName
     }
 
 
@@ -55,6 +55,7 @@ public class PhoneContact: Identifiable, Hashable {
         nameSuffix = contact.nameSuffix
         avatarData = contact.thumbnailImageData
         cnContact = contact
+        
         for phone in contact.phoneNumbers {
             phoneNumber.append(phone.value.stringValue)
         }
@@ -65,5 +66,13 @@ public class PhoneContact: Identifiable, Hashable {
 
     public func hash(into hasher: inout Hasher) {
         hasher.combine(id)
+    }
+}
+
+
+extension CNContact {
+    var fullName: String {
+        let safeName = [self.givenName, self.middleName , self.familyName].compactMap({ $0 }).joined(separator: " ")
+        return CNContactFormatter.string(from: self, style: .fullName) ?? safeName
     }
 }

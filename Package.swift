@@ -19,7 +19,7 @@ let package = Package(
             name: "SwiftUIContactPicker",
             dependencies: [],
             path: "SwiftUIContactPicker",
-            exclude: ["Tests"],
+            exclude: ["Tests", "SwiftUIContactPickerExample"],
             resources: [.process("Resources")]
         ),
         // .testTarget(

@@ -21,11 +21,14 @@ public class ContactPickerViewModel: ObservableObject {
 
     var query: String = "" {
         willSet {
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
                 self.searchSubject.send(newValue)
             }
         }
     }
+
+    let onlyWithPhoneNumber: Bool
 
     private let searchSubject = PassthroughSubject<String, Never>()
 
@@ -35,30 +38,48 @@ public class ContactPickerViewModel: ObservableObject {
         searchCancellable?.cancel()
     }
 
-    public init(store: ContactStoreProvider) {
+    public init(store: ContactStoreProvider, onlyWithPhoneNumber: Bool = false) {
         self.store = store
-
+        self.onlyWithPhoneNumber = onlyWithPhoneNumber
+        
         searchCancellable = searchSubject
             .eraseToAnyPublisher().map { $0 }
             .debounce(for: .milliseconds(100), scheduler: DispatchQueue.main)
             .removeDuplicates()
             .sink(receiveValue: { searchText in
-                self.rows = self.store.filtered(by: searchText)
+                let rows = self.store.filtered(by: searchText)
+                if self.onlyWithPhoneNumber {
+                    self.rows = rows.filter { $0.phoneNumber.count > 0 }
+                } else {
+                    self.rows = rows
+                }
                 self.updateGroups()
             })
     }
 
     public func updateGroups() {
         let _groups = Dictionary(grouping: rows) { (contact: PhoneContact) -> String in
-            guard let fn = contact.familyName else { return "" }
-            return String(fn.prefix(1))
+            return String(contact.sortName.prefix(1))
         }.sorted { l, r -> Bool in
-            l.key < r.key
+            if l.key == "#"  { return false }
+            if r.key == "#" { return true }
+            return l.key < r.key
         }.map { key, value -> Group in
             Group(name: key, rows: value.sorted(by: { (lp, rp) -> Bool in
-                lp.familyName ?? "" < rp.familyName ?? ""
+                lp.sortName < rp.sortName
             }))
         }
         self.groups = _groups
+    }
+}
+
+extension PhoneContact {
+    var sortName: String {
+        if let fn = familyName?.trimmingCharacters(in: .whitespacesAndNewlines), !fn.isEmpty {
+            return fn
+        } else if let gn = givenName?.trimmingCharacters(in: .whitespacesAndNewlines), !gn.isEmpty {
+            return gn
+        }
+        return "#"
     }
 }

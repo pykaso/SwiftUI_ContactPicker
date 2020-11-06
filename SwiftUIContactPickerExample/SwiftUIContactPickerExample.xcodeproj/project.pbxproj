@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,8 +11,23 @@
 		1904AD5E2550B23F0086CCFD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1904AD5D2550B23F0086CCFD /* ContentView.swift */; };
 		1904AD602550B2410086CCFD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1904AD5F2550B2410086CCFD /* Assets.xcassets */; };
 		1904AD632550B2410086CCFD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1904AD622550B2410086CCFD /* Preview Assets.xcassets */; };
-		194E90B02550BBE700A079EF /* SwiftUIContactPicker in Frameworks */ = {isa = PBXBuildFile; productRef = 194E90AF2550BBE700A079EF /* SwiftUIContactPicker */; };
+		19D972F22554BAB000D8C7D4 /* SwiftUIContactPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19D972F12554BAB000D8C7D4 /* SwiftUIContactPicker.framework */; };
+		19D972F32554BAB000D8C7D4 /* SwiftUIContactPicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 19D972F12554BAB000D8C7D4 /* SwiftUIContactPicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		19D972F42554BAB000D8C7D4 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				19D972F32554BAB000D8C7D4 /* SwiftUIContactPicker.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1904AD582550B23F0086CCFD /* SwiftUIContactPickerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUIContactPickerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -21,6 +36,7 @@
 		1904AD5F2550B2410086CCFD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1904AD622550B2410086CCFD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1904AD642550B2410086CCFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		19D972F12554BAB000D8C7D4 /* SwiftUIContactPicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftUIContactPicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -28,7 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				194E90B02550BBE700A079EF /* SwiftUIContactPicker in Frameworks */,
+				19D972F22554BAB000D8C7D4 /* SwiftUIContactPicker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,6 +91,7 @@
 		194E90AE2550BBE700A079EF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				19D972F12554BAB000D8C7D4 /* SwiftUIContactPicker.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -89,6 +106,7 @@
 				1904AD542550B23F0086CCFD /* Sources */,
 				1904AD552550B23F0086CCFD /* Frameworks */,
 				1904AD562550B23F0086CCFD /* Resources */,
+				19D972F42554BAB000D8C7D4 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -96,7 +114,6 @@
 			);
 			name = SwiftUIContactPickerExample;
 			packageProductDependencies = (
-				194E90AF2550BBE700A079EF /* SwiftUIContactPicker */,
 			);
 			productName = SwiftUIComponents;
 			productReference = 1904AD582550B23F0086CCFD /* SwiftUIContactPickerExample.app */;
@@ -341,13 +358,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		194E90AF2550BBE700A079EF /* SwiftUIContactPicker */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = SwiftUIContactPicker;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1904AD502550B23F0086CCFD /* Project object */;
 }

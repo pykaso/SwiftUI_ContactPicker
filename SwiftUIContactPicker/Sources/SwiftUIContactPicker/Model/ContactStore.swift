@@ -1,5 +1,5 @@
-import SwiftUI
 import ContactsUI
+import SwiftUI
 
 public protocol ContactStoreProvider {
     func filtered(by query: String) -> [PhoneContact]
@@ -44,19 +44,21 @@ public class ContactStore: ObservableObject, ContactStoreProvider {
             print("Error fetching containers")
         }
 
-        var results: [CNContact] = []
+        var results: Set<CNContact> = []
 
         for container in allContainers {
             let fetchPredicate = CNContact.predicateForContactsInContainer(withIdentifier: container.identifier)
 
             do {
                 let containerResults = try contactStore.unifiedContacts(matching: fetchPredicate, keysToFetch: keysToFetch as! [CNKeyDescriptor])
-                results.append(contentsOf: containerResults)
+                for c in containerResults {
+                    results.insert(c)
+                }
             } catch {
                 print("Error fetching containers")
             }
         }
-        return results
+        return Array(results)
     }
 }
 

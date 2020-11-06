@@ -10,7 +10,11 @@ public struct CompactContactRow: View {
     public var body: some View {
         HStack(spacing: 2) {
             if let gn = contact.givenName {
-                Text(gn)
+                if contact.familyName == nil || contact.familyName?.isEmpty ?? false  {
+                    Text(gn).bold()
+                } else {
+                    Text(gn)
+                }
             }
             if let mn = contact.middleName {
                 Text(mn)

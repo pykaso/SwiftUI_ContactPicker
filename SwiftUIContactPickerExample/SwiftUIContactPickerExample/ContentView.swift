@@ -23,7 +23,7 @@ struct ContentView: View {
             .sheet(isPresented: $showSheet, content: {
                 ZStack {
                     if !flipped {
-                        ContactListView(viewModel: ContactPickerViewModel(store: ContactStore()), selectedContact: $selectedContact,
+                        ContactListView(viewModel: ContactPickerViewModel(store: ContactStore(), onlyWithPhoneNumber: true), selectedContact: $selectedContact,
                                         onCancel: {
                                             showSheet = false
                                         })
