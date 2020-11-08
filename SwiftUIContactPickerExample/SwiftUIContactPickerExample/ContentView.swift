@@ -15,6 +15,9 @@ struct ContentView: View {
     @State var flipped: Bool = false
     @State var degrees: Double = 0
 
+    private var cpViewModel = ContactPickerViewModel(store: ContactStore(), onlyWithPhoneNumber: true)
+    private var cpConfig = ContactPickerConfiguration.default
+    
     var body: some View {
         Text("Choose a contact")
             .onTapGesture {
@@ -23,7 +26,7 @@ struct ContentView: View {
             .sheet(isPresented: $showSheet, content: {
                 ZStack {
                     if !flipped {
-                        ContactListView(viewModel: ContactPickerViewModel(store: ContactStore(), onlyWithPhoneNumber: true), selectedContact: $selectedContact,
+                        ContactPickerView(viewModel: cpViewModel, config: cpConfig, selectedContact: $selectedContact,
                                         onCancel: {
                                             showSheet = false
                                         })

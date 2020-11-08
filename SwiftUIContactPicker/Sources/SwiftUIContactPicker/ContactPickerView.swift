@@ -1,19 +1,21 @@
 import Contacts
 import SwiftUI
 
-public struct ContactListView: View {
+public struct ContactPickerView: View {
     @Binding var selectedContact: PhoneContact?
     @StateObject private var viewModel: ContactPickerViewModel = ContactPickerViewModel(store: ContactStore())
+    private var cpConfig: ContactPickerConfiguration
 
     public init(
         viewModel: ContactPickerViewModel,
+        config: ContactPickerConfiguration,
         selectedContact: Binding<PhoneContact?>,
-        rowBuilder: ((PhoneContact, ContactListView) -> AnyView)? = nil,
+        rowBuilder: ((PhoneContact, ContactPickerView) -> AnyView)? = nil,
         onCancel: (() -> Void)? = nil
     ) {
         self._selectedContact = selectedContact
         self.onCancel = onCancel
-
+        self.cpConfig = config
         if let rb = rowBuilder {
             self.rowBuilder = rb
         } else {
@@ -23,19 +25,20 @@ public struct ContactListView: View {
         }
     }
 
-    let rowBuilder: (_ contact: PhoneContact, _ listView: ContactListView) -> AnyView
+    let rowBuilder: (_ contact: PhoneContact, _ listView: ContactPickerView) -> AnyView
     let onCancel: (() -> Void)?
 
     public var body: some View {
         VStack(alignment: .center, spacing: 0) {
-            ContactPickerHeader(text: $viewModel.query, onCancel: onCancel)
+            ContactPickerHeader(text: $viewModel.query, onCancel: onCancel, l10n: cpConfig.l10n)
 
             if viewModel.groups.count > 0 {
                 List {
                     ForEach(viewModel.groups) { g in
                         Section(header: Text(g.name)) {
                             ForEach(g.rows) { c in
-                                rowBuilder(c, self).onTapGesture {
+                                rowBuilder(c, self)
+                                    .onTapGesture {
                                     // print("onTapGesture: \(c.name)")
                                     viewModel.selectedContact = c
                                     selectedContact = c
@@ -68,8 +71,9 @@ public struct ContactListView: View {
 
 struct ContactListView_Previews: PreviewProvider {
     static let vm = ContactPickerViewModel(store: StubContactStore())
+    
     static var previews: some View {
-        ContactListView(viewModel: vm, selectedContact: Binding.constant(nil)) { contact, _ in
+        ContactPickerView(viewModel: vm, config: ContactPickerConfiguration.default, selectedContact: Binding.constant(nil)) { contact, _ in
             AnyView(CompactContactRow(contact: contact))
         }
     }

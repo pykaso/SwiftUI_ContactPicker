@@ -3,19 +3,21 @@ import SwiftUI
 public struct ContactPickerHeader: View {
     @Binding var text: String
     public let onCancel: (() -> Void)?
-    
+    public let l10n: ContactPickerConfiguration.L10n
+
     @State private var showCancelButton: Bool = false
 
     public var body: some View {
         VStack(spacing: 0) {
             if !showCancelButton {
                 HStack {
-                    Button("Groups", action: {}).hidden()
+                    Button(l10n.groupsButton, action: {})
+                        .hidden()
                     Spacer()
-                    Text("Contacts")
+                    Text(l10n.title)
                         .bold()
                     Spacer()
-                    Button("Cancel", action: {
+                    Button(l10n.cancelButton, action: {
                         onCancel?()
                     })
                 }.padding(EdgeInsets(top: 18, leading: 20, bottom: 4, trailing: 20))
@@ -29,15 +31,13 @@ public struct ContactPickerHeader: View {
                         .padding(EdgeInsets(top: 0, leading: 6, bottom: 0, trailing: 0))
                     TextField("", text: $text,
                               onEditingChanged: { changed in
-                                  print("onEditingChanged(\(changed)")
                                   withAnimation {
                                       showCancelButton = changed
                                   }
                               },
                               onCommit: {
-                                  print("onCommit")
                               })
-                        .modifier(PlaceholderStyle(showPlaceHolder: text.isEmpty, placeholder: "Search"))
+                        .modifier(PlaceholderStyle(showPlaceHolder: text.isEmpty, placeholder: l10n.searchPlaceholder))
                         .font(.system(size: 18, weight: .regular, design: .default))
                         .padding(EdgeInsets(top: 6, leading: 0, bottom: 6, trailing: 4))
                         .background(Color.clear)
@@ -56,12 +56,11 @@ public struct ContactPickerHeader: View {
                 .cornerRadius(10)
 
                 if showCancelButton {
-                    Button("Cancel", action: {
+                    Button(l10n.cancelButton, action: {
                         text = ""
-                        //showCancelButton = false
                         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                     })
-                    .accentColor(Color.Theme.primaryTint)
+                        .accentColor(Color.Theme.primaryTint)
                 }
             }
             .padding(EdgeInsets(top: 15, leading: 20, bottom: 15, trailing: 20))

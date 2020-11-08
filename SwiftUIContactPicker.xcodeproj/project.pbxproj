@@ -15,6 +15,7 @@
 		19D972ED2554B98800D8C7D4 /* ContactPickerHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D972E52554B98700D8C7D4 /* ContactPickerHeaderView.swift */; };
 		19D972EE2554B98800D8C7D4 /* CompactContactRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D972E62554B98700D8C7D4 /* CompactContactRow.swift */; };
 		19D972EF2554B98800D8C7D4 /* ContactPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D972E72554B98700D8C7D4 /* ContactPickerViewModel.swift */; };
+		19D973932558156200D8C7D4 /* ContactPickerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D973922558156200D8C7D4 /* ContactPickerConfiguration.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		19D972E52554B98700D8C7D4 /* ContactPickerHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactPickerHeaderView.swift; sourceTree = "<group>"; };
 		19D972E62554B98700D8C7D4 /* CompactContactRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompactContactRow.swift; sourceTree = "<group>"; };
 		19D972E72554B98700D8C7D4 /* ContactPickerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactPickerViewModel.swift; sourceTree = "<group>"; };
+		19D973922558156200D8C7D4 /* ContactPickerConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPickerConfiguration.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 			children = (
 				19D972E02554B98700D8C7D4 /* ContactStore.swift */,
 				19D972E12554B98700D8C7D4 /* PhoneContact.swift */,
+				19D973922558156200D8C7D4 /* ContactPickerConfiguration.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -193,6 +196,7 @@
 			files = (
 				19D972E82554B98700D8C7D4 /* ContactPickerView.swift in Sources */,
 				19D972EA2554B98700D8C7D4 /* ContactStore.swift in Sources */,
+				19D973932558156200D8C7D4 /* ContactPickerConfiguration.swift in Sources */,
 				19D972E92554B98700D8C7D4 /* Color+Extensions.swift in Sources */,
 				19D972ED2554B98800D8C7D4 /* ContactPickerHeaderView.swift in Sources */,
 				19D972EB2554B98700D8C7D4 /* PhoneContact.swift in Sources */,

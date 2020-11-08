@@ -16,6 +16,7 @@ import SwiftUIContactPicker
 @State var selectedContact: PhoneContact?
 @State var viewModel: ContactPickerViewModel = ContactPickerViewModel(store: 
 @State var showSheet: Bool = false
+private var cpConfig = ContactPickerConfiguration.default
 
 var body: some View {
     Text("Choose a contact")
@@ -23,7 +24,8 @@ var body: some View {
             showSheet.toggle()
         }
         .sheet(isPresented: $showSheet, content: {
-            ContactListView(viewModel: ContactPickerViewModel(store: ContactStore()),
+            ContactPickerView(viewModel: viewModel,
+                            config: cpConfig,
                             selectedContact: $selectedContact,
                             onCancel: {
                                 showSheet = false

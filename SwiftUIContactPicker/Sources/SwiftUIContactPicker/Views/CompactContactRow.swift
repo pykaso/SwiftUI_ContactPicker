@@ -26,6 +26,6 @@ public struct CompactContactRow: View {
                 Text(ns)
             }
             Spacer()
-        }
+        }.contentShape(Rectangle())
     }
 }
